@@ -180,8 +180,16 @@ class PointCloudScene:
             self.face_colors = "white"
 
         self.scatter = visuals.Markers()
-        self.scatter.set_data(self.points, face_color=self.face_colors, size=3)
+        self.scatter.set_data(
+            self.points,
+            face_color=self.face_colors,
+            size=3,
+        )
         self.view.add(self.scatter)
 
     def update_points(self, scaled_points: np.ndarray):
-        self.scatter.set_data(scaled_points, face_color=self.face_colors, size=3)
+        self.scatter.set_data(
+            scaled_points,
+            face_color=self.face_colors,
+            size=3,
+        )

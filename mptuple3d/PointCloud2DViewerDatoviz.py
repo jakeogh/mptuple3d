@@ -63,7 +63,11 @@ class PointCloud2DViewerDatoviz:
 
         # Colors - use consolidated color function
         if color_data is None:
-            color = np.full((self.N, 4), 255, dtype=np.uint8)  # white
+            color = np.full(
+                (self.N, 4),
+                255,
+                dtype=np.uint8,
+            )  # white
         else:
             if (
                 color_data.ndim == 2
@@ -80,7 +84,11 @@ class PointCloud2DViewerDatoviz:
                 # Optional colorbar: nice freebie
                 dmin = float(np.min(color_data))
                 dmax = float(np.max(color_data))
-                self.figure.colorbar(cmap="viridis", dmin=dmin, dmax=dmax)
+                self.figure.colorbar(
+                    cmap="viridis",
+                    dmin=dmin,
+                    dmax=dmax,
+                )
 
         # Size
         if size is not None:
@@ -88,10 +96,18 @@ class PointCloud2DViewerDatoviz:
         else:
             # Auto: smaller when very large N
             psize = 3.0 if self.N > 100_000 else 5.0
-        self._sizes = np.full((self.N,), psize, dtype=np.float32)
+        self._sizes = np.full(
+            (self.N,),
+            psize,
+            dtype=np.float32,
+        )
 
         # Scatter visual
-        self.scatter = self.app.point(position=position, color=color, size=self._sizes)
+        self.scatter = self.app.point(
+            position=position,
+            color=color,
+            size=self._sizes,
+        )
         self.panel.add(self.scatter)
 
         # Optional line/path through points
@@ -99,7 +115,9 @@ class PointCloud2DViewerDatoviz:
         if self.draw_lines and self.N >= 2:
             # Path expects positions in NDC; reuse the same normalization
             self.path = self.app.path(
-                position=position, color=(180, 180, 180, 200), linewidth=1.0
+                position=position,
+                color=(180, 180, 180, 200),
+                linewidth=1.0,
             )
             self.panel.add(self.path)
 

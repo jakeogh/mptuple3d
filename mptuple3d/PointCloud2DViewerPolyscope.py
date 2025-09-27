@@ -105,7 +105,14 @@ class PointCloud2DViewerPolyscope:
 
     def set_points(self, points_xy: np.ndarray) -> None:
         # Use consolidated validation
-        pts2 = validate_array(points_xy, "(N, 2)", "points") * self._scale_xy[None, :]
+        pts2 = (
+            validate_array(
+                points_xy,
+                "(N, 2)",
+                "points",
+            )
+            * self._scale_xy[None, :]
+        )
         self._points2d = pts2
         self._register()
 
@@ -126,7 +133,11 @@ class PointCloud2DViewerPolyscope:
         if self._points2d is None:
             raise RuntimeError("set_points() must be called before set_scalars()")
         # Use consolidated validation
-        vals = validate_scalars(values, self._points2d.shape[0], "values")
+        vals = validate_scalars(
+            values,
+            self._points2d.shape[0],
+            "values",
+        )
         self._scalars = (label, vals)
         self._register()
 
@@ -293,10 +304,18 @@ class PointCloud2DViewerPolyscope:
         pts3 = pad_to_dimensions(self._points2d, 3)
         pc = ps.register_point_cloud(self.cloud_name, pts3)
         if self._colors is not None:
-            pc.add_color_quantity("colors", self._colors, enabled=True)
+            pc.add_color_quantity(
+                "colors",
+                self._colors,
+                enabled=True,
+            )
         if self._scalars is not None:
             label, values = self._scalars
-            pc.add_scalar_quantity(label, values, enabled=True)
+            pc.add_scalar_quantity(
+                label,
+                values,
+                enabled=True,
+            )
 
     def _handle_mouse_input(self) -> None:
         """Handle mouse input for rubber band zoom."""
@@ -382,7 +401,11 @@ class PointCloud2DViewerPolyscope:
             | psim.ImGuiWindowFlags_NoBringToFrontOnFocus
         )
 
-        expanded, opened = psim.Begin("##RubberBandCapture", True, window_flags)
+        expanded, opened = psim.Begin(
+            "##RubberBandCapture",
+            True,
+            window_flags,
+        )
         if expanded:
             # Create an invisible button that covers the entire window area
             psim.InvisibleButton("##FullScreenCapture", (display_w, display_h))
@@ -431,7 +454,11 @@ class PointCloud2DViewerPolyscope:
 
         # Draw semi-transparent fill
         fill_color = psim.GetColorU32((1.0, 1.0, 1.0, 0.1))  # Very transparent white
-        draw_list.AddRectFilled((min_x, min_y), (max_x, max_y), fill_color)
+        draw_list.AddRectFilled(
+            (min_x, min_y),
+            (max_x, max_y),
+            fill_color,
+        )
 
     def _draw_ui_panel(self) -> None:
         """Draw ImGui panel with camera controls and instructions."""

@@ -27,11 +27,11 @@ from vispy import scene
 from vispy.scene import visuals  # type: ignore
 
 from .ColorManager import ColorManager
+from .ColorManager import make_colors_from_scalar
 from .InputState import InputState
 from .mptuple3d import UnlimitedTurntableCamera
 from .utils import KeyboardInputManager
 from .utils import center_points
-from .ColorManager import make_colors_from_scalar
 from .utils import normalize_points
 
 
@@ -47,7 +47,7 @@ class PointCloud3DViewerVispy(QMainWindow):
         view_mode: str | None = None,
         disable_antialiasing: bool = False,
         draw_lines: bool = False,
-        size: float | None = None,
+        point_size: float = 3.0,
     ):
         super().__init__()
         if points.shape[0] == 0:
@@ -71,7 +71,9 @@ class PointCloud3DViewerVispy(QMainWindow):
         # Create managers early, before any method calls that might use them
         self.keyboard_manager = KeyboardInputManager(self.state, self.acceleration)
         self.color_manager = ColorManager(
-            backend="vispy", colormap="viridis", default_color="white"
+            backend="vispy",
+            colormap="viridis",
+            default_color="white",
         )
 
         # canvas and scene
@@ -96,8 +98,8 @@ class PointCloud3DViewerVispy(QMainWindow):
 
         # Determine optimal settings based on point count and CLI args
         point_count = len(self.points)
-        if size is not None:
-            self.point_size = size
+        if point_size is not None:
+            self.point_size = point_size
         elif point_count > 100000:
             self.point_size = 5
         else:
@@ -139,7 +141,11 @@ class PointCloud3DViewerVispy(QMainWindow):
 
         self.canvas.events.key_press.connect(self.on_key_press)
         self.canvas.events.key_release.connect(self.on_key_release)
-        self.timer = app.Timer("auto", connect=self.on_timer, start=True)
+        self.timer = app.Timer(
+            "auto",
+            connect=self.on_timer,
+            start=True,
+        )
 
         central = QWidget()
         main_layout = QVBoxLayout()
@@ -251,7 +257,9 @@ class PointCloud3DViewerVispy(QMainWindow):
         # Trigger immediate redraw with new size
         scaled_points = self.points * self.state.scale
         self.scatter.set_data(
-            scaled_points, face_color=self._make_colors(), size=self.point_size
+            scaled_points,
+            face_color=self._make_colors(),
+            size=self.point_size,
         )
 
     def on_antialiasing_changed(self, checked: bool):
@@ -302,7 +310,9 @@ class PointCloud3DViewerVispy(QMainWindow):
         self._update_rotation(dt)
         scaled_points = self.points * self.state.scale
         self.scatter.set_data(
-            scaled_points, face_color=self._make_colors(), size=self.point_size
+            scaled_points,
+            face_color=self._make_colors(),
+            size=self.point_size,
         )
         if self.draw_lines and self.line is not None:
             self.line.set_data(pos=scaled_points)

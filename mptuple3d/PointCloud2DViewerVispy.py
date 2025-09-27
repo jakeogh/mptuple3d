@@ -60,7 +60,7 @@ class PointCloud2DViewerVispy(QMainWindow):
         normalize: bool = True,
         disable_antialiasing: bool = False,
         draw_lines: bool = False,
-        size: float | None = None,
+        point_size: float | None = None,
     ):
         super().__init__()
         if points_xy.shape[0] == 0:
@@ -82,7 +82,9 @@ class PointCloud2DViewerVispy(QMainWindow):
         # Create managers early, before any method calls that might use them
         self.keyboard_manager = KeyboardInputManager(self.state, self.acceleration)
         self.color_manager = ColorManager(
-            backend="vispy", colormap="viridis", default_color="white"
+            backend="vispy",
+            colormap="viridis",
+            default_color="white",
         )
 
         self.canvas = scene.SceneCanvas(keys="interactive", show=False)
@@ -111,8 +113,8 @@ class PointCloud2DViewerVispy(QMainWindow):
 
         self.scatter = visuals.Markers()
         point_count = len(self.points2d)
-        if size is not None:
-            self.point_size = size
+        if point_size is not None:
+            self.point_size = point_size
         elif point_count > 100000:
             self.point_size = 3
         else:
@@ -148,7 +150,11 @@ class PointCloud2DViewerVispy(QMainWindow):
 
         self.canvas.events.key_press.connect(self.on_key_press)
         self.canvas.events.key_release.connect(self.on_key_release)
-        self.timer = app.Timer("auto", connect=self.on_timer, start=True)
+        self.timer = app.Timer(
+            "auto",
+            connect=self.on_timer,
+            start=True,
+        )
 
         central = QWidget()
         main_layout = QVBoxLayout()
@@ -249,7 +255,9 @@ class PointCloud2DViewerVispy(QMainWindow):
         self.point_size = value
         scaled_xy = self.points2d * self.state.scale[:2]
         self.scatter.set_data(
-            pad_to_3d(scaled_xy), face_color=self._make_colors(), size=self.point_size
+            pad_to_3d(scaled_xy),
+            face_color=self._make_colors(),
+            size=self.point_size,
         )
 
     def on_antialiasing_changed(self, checked: bool):
@@ -279,7 +287,9 @@ class PointCloud2DViewerVispy(QMainWindow):
         self._update_scaling(dt)
         scaled_xy = self.points2d * self.state.scale[:2]
         self.scatter.set_data(
-            pad_to_3d(scaled_xy), face_color=self._make_colors(), size=self.point_size
+            pad_to_3d(scaled_xy),
+            face_color=self._make_colors(),
+            size=self.point_size,
         )
         if self.draw_lines and self.line is not None:
             self.line.set_data(pos=pad_to_3d(scaled_xy))

@@ -3,12 +3,6 @@ isort:skip_file
 """
 
 from .PointCloud2DViewerVispy import PointCloud2DViewerVispy as PointCloud2DViewerVispy
-from .PointCloud2DViewerMatplotlib import (
-    PointCloud2DViewerMatplotlib as PointCloud2DViewerMatplotlib,
-)
-from .PointCloud3DViewerMatplotlib import (
-    PointCloud3DViewerMatplotlib as PointCloud3DViewerMatplotlib,
-)
 from .PointCloud3DViewerVispy import PointCloud3DViewerVispy as PointCloud3DViewerVispy
 from .PointCloud2DViewerPolyscope import (
     PointCloud2DViewerPolyscope as PointCloud2DViewerPolyscope,

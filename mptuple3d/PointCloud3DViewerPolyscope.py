@@ -101,7 +101,14 @@ class PointCloud3DViewerPolyscope:
 
     def set_points(self, points_xyz: np.ndarray) -> None:
         # Use consolidated validation
-        pts = validate_array(points_xyz, "(N, 3)", "points") * self._scale[None, :]
+        pts = (
+            validate_array(
+                points_xyz,
+                "(N, 3)",
+                "points",
+            )
+            * self._scale[None, :]
+        )
         self._points = pts
         self._register()
 
@@ -112,13 +119,21 @@ class PointCloud3DViewerPolyscope:
         self._colors = validate_colors(rgb01, self._points.shape[0])
         self._register()
 
-    def set_scalars(self, label: str, values: np.ndarray) -> None:
+    def set_scalars(
+        self,
+        label: str,
+        values: np.ndarray,
+    ) -> None:
         if not isinstance(label, str):
             raise TypeError("label must be str")
         if self._points is None:
             raise RuntimeError("set_points() must be called before set_scalars()")
         # Use consolidated validation
-        vals = validate_scalars(values, self._points.shape[0], "values")
+        vals = validate_scalars(
+            values,
+            self._points.shape[0],
+            "values",
+        )
         self._scalars = (label, vals)
         self._register()
 
@@ -147,7 +162,11 @@ class PointCloud3DViewerPolyscope:
 
     # ---------- rubber band zoom functionality ----------
 
-    def fit_to_selection(self, min_corner: np.ndarray, max_corner: np.ndarray) -> None:
+    def fit_to_selection(
+        self,
+        min_corner: np.ndarray,
+        max_corner: np.ndarray,
+    ) -> None:
         """Fit camera to view the selected bounding box."""
         if self._points is None:
             return
@@ -165,7 +184,9 @@ class PointCloud3DViewerPolyscope:
         ps.look_at(center, center + np.array([0, 0, distance]))
 
     def zoom_to_points_in_region(
-        self, screen_min: tuple[float, float], screen_max: tuple[float, float]
+        self,
+        screen_min: tuple[float, float],
+        screen_max: tuple[float, float],
     ) -> None:
         """Zoom to points that fall within the screen region."""
         if self._points is None:
@@ -243,11 +264,19 @@ class PointCloud3DViewerPolyscope:
         pc = ps.register_point_cloud(self.cloud_name, self._points)
 
         if self._colors is not None:
-            pc.add_color_quantity("colors", self._colors, enabled=True)
+            pc.add_color_quantity(
+                "colors",
+                self._colors,
+                enabled=True,
+            )
 
         if self._scalars is not None:
             label, values = self._scalars
-            pc.add_scalar_quantity(label, values, enabled=True)
+            pc.add_scalar_quantity(
+                label,
+                values,
+                enabled=True,
+            )
 
     def _handle_mouse_input(self) -> None:
         """Handle mouse input for rubber band zoom."""
@@ -333,7 +362,11 @@ class PointCloud3DViewerPolyscope:
             | psim.ImGuiWindowFlags_NoBringToFrontOnFocus
         )
 
-        expanded, opened = psim.Begin("##RubberBandCapture", True, window_flags)
+        expanded, opened = psim.Begin(
+            "##RubberBandCapture",
+            True,
+            window_flags,
+        )
         if expanded:
             # Create an invisible button that covers the entire window area
             psim.InvisibleButton("##FullScreenCapture", (display_w, display_h))
@@ -371,11 +404,22 @@ class PointCloud3DViewerPolyscope:
 
         # Draw rectangle outline - use tuple format for GetColorU32
         color = psim.GetColorU32((1.0, 1.0, 1.0, 0.8))  # White with alpha
-        draw_list.AddRect((min_x, min_y), (max_x, max_y), color, 0.0, 0, 2.0)
+        draw_list.AddRect(
+            (min_x, min_y),
+            (max_x, max_y),
+            color,
+            0.0,
+            0,
+            2.0,
+        )
 
         # Draw semi-transparent fill
         fill_color = psim.GetColorU32((1.0, 1.0, 1.0, 0.1))  # Very transparent white
-        draw_list.AddRectFilled((min_x, min_y), (max_x, max_y), fill_color)
+        draw_list.AddRectFilled(
+            (min_x, min_y),
+            (max_x, max_y),
+            fill_color,
+        )
 
     def _draw_ui_panel(self) -> None:
         """Draw ImGui panel with camera controls and instructions."""
@@ -436,7 +480,14 @@ if __name__ == "__main__":
     rng = np.random.default_rng(0)
     pts = rng.normal(size=(10_000, 3)).astype(np.float32)
     # normalize to unit-ish sphere
-    norms = np.linalg.norm(pts, axis=1, keepdims=True) + 1e-12
+    norms = (
+        np.linalg.norm(
+            pts,
+            axis=1,
+            keepdims=True,
+        )
+        + 1e-12
+    )
     pts = pts / norms
 
     # simple colorization

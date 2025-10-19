@@ -10,10 +10,10 @@ dependencies = [
     "matplotlib",
     "vispy",
     "polyscope",
-    "datoviz",
     "pint",
     "clicktool @ git+https://git@github.com/jakeogh/clicktool",
 ]
+# "datoviz",
 
 config = {
     "version": "0.1",

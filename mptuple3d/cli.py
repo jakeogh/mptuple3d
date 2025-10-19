@@ -16,7 +16,6 @@ from clicktool import tvicgvd
 from configtool import get_config_directory
 from globalverbose import gvd
 from PyQt6.QtWidgets import QApplication  # pylint: disable=E0611
-from timestamptool import get_timestamp
 
 from .mptuple3d import enable_dark_mode
 from .utils import center_points

@@ -1,0 +1,47 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mptuple3d"
+version = "0.0.1760938327"
+description = "plots 3-tuples in 3D space"
+authors = [
+    { name = "Justin Keogh", email = "github.com@v6y.net" },
+]
+dependencies = [
+    "asserttool @ git+https://github.com/jakeogh/asserttool",
+    "click-auto-help @ git+https://github.com/jakeogh/click-auto-help",
+    "clicktool @ git+https://github.com/jakeogh/clicktool",
+    "configtool @ git+https://github.com/jakeogh/configtool",
+    "globalverbose @ git+https://github.com/jakeogh/globalverbose",
+    "matplotlib",
+    "numpy",
+    "pint",
+    "unmp @ git+https://github.com/jakeogh/unmp",
+]
+requires-python = ">=3.11"
+license = "ISC"
+
+
+[project.urls]
+Homepage = "https://github.com/jakeogh/mptuple3d"
+
+[project.scripts]
+mptuple3d = "mptuple3d.cli:cli"
+
+[tool.setuptools]
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.packages.find]
+exclude = [
+    "tests",
+]
+
+[tool.setuptools.package-data]
+mptuple3d = [
+    "py.typed",
+]

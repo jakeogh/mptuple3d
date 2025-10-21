@@ -1,12 +1,11 @@
 [build-system]
-requires = [
-    "setuptools>=61.0",
-]
-build-backend = "setuptools.build_meta"
+requires = ["setuptools>=61.0", "tomlkit"]
+build-backend = "pep508_url_version_backend"
+backend-path = ["."]
 
 [project]
 name = "mptuple3d"
-version = "0.0.1760938327"
+version = "0.0.1761028971"
 description = "plots 3-tuples in 3D space"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -45,3 +44,8 @@ exclude = [
 mptuple3d = [
     "py.typed",
 ]
+
+[tool.pep508-url-version-backend]
+dependencies-indexed = ["asserttool>=0.0.1761027719", "click-auto-help>=0.0.1760909851", "clicktool>=0.0.1761028751", "configtool>=0.0.1760910230", "globalverbose>=0.0.1760909940", "unmp>=0.0.1760909622"]
+dependencies-git = ["asserttool @ git+https://github.com/jakeogh/asserttool", "click-auto-help @ git+https://github.com/jakeogh/click-auto-help", "clicktool @ git+https://github.com/jakeogh/clicktool", "configtool @ git+https://github.com/jakeogh/configtool", "globalverbose @ git+https://github.com/jakeogh/globalverbose", "unmp @ git+https://github.com/jakeogh/unmp"]
+index-urls = ["jakeogh.github.io", "pip-index"]

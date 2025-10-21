@@ -5,22 +5,12 @@ backend-path = ["."]
 
 [project]
 name = "mptuple3d"
-version = "0.0.1761028974"
+version = "0.0.1761031066"
 description = "plots 3-tuples in 3D space"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
 ]
-dependencies = [
-    "asserttool @ git+https://github.com/jakeogh/asserttool",
-    "click-auto-help @ git+https://github.com/jakeogh/click-auto-help",
-    "clicktool @ git+https://github.com/jakeogh/clicktool",
-    "configtool @ git+https://github.com/jakeogh/configtool",
-    "globalverbose @ git+https://github.com/jakeogh/globalverbose",
-    "matplotlib",
-    "numpy",
-    "pint",
-    "unmp @ git+https://github.com/jakeogh/unmp",
-]
+dependencies = []
 requires-python = ">=3.11"
 license = "ISC"
 

@@ -5,7 +5,7 @@ backend-path = ["."]
 
 [project]
 name = "mptuple3d"
-version = "1!0.0.1761899641"
+version = "1!0.0.1761906073"
 description = "plots 3-tuples in 3D space"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -36,13 +36,14 @@ mptuple3d = [
 ]
 
 [tool.pep508-url-version-backend]
-dependencies-indexed = ["asserttool>=1!0.0.1761250315", "click-auto-help>=0.0.1761041641", "clicktool>=1!0.0.1761810015", "configtool>=1!0.0.1761899585", "globalverbose>=0.0.1761031290", "unmp>=1!0.0.1761896891"]
+dependencies-indexed = ["vispy", "asserttool>=1!0.0.1761250315", "click-auto-help>=0.0.1761041641", "clicktool>=1!0.0.1761810015", "configtool>=1!0.0.1761899585", "globalverbose>=0.0.1761031290", "unmp>=1!0.0.1761896891"]
 dependencies-git = [
-	"asserttool @ git+https://github.com/jakeogh/asserttool", 
-	"click-auto-help @ git+https://github.com/jakeogh/click-auto-help", 
-	"clicktool @ git+https://github.com/jakeogh/clicktool", 
-	"configtool @ git+https://github.com/jakeogh/configtool", 
-	"globalverbose @ git+https://github.com/jakeogh/globalverbose", 
+	"vispy",
+	"asserttool @ git+https://github.com/jakeogh/asserttool",
+	"click-auto-help @ git+https://github.com/jakeogh/click-auto-help",
+	"clicktool @ git+https://github.com/jakeogh/clicktool",
+	"configtool @ git+https://github.com/jakeogh/configtool",
+	"globalverbose @ git+https://github.com/jakeogh/globalverbose",
 	"unmp @ git+https://github.com/jakeogh/unmp"
 ]
 index-urls = ["jakeogh.github.io", "pip-index"]

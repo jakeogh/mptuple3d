@@ -5,7 +5,7 @@ backend-path = ["."]
 
 [project]
 name = "mptuple3d"
-version = "1!0.0.1762049847"
+version = "1!0.0.1762049881"
 description = "plots 3-tuples in 3D space"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },

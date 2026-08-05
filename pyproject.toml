@@ -5,7 +5,7 @@ backend-path = ["."]
 
 [project]
 name = "mptuple3d"
-version = "1!0.0.1785930309"
+version = "1!0.0.1785931267"
 description = "plots 3-tuples in 3D space"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -36,7 +36,7 @@ mptuple3d = [
 ]
 
 [tool.pep508-url-version-backend]
-dependencies-indexed = ["vispy", "polyscope", "asserttool>=1!0.0.1785542140", "click-auto-help>=1!0.0.1784680961", "clicktool>=1!0.0.1785539783", "configtool>=1!0.0.1785930097", "globalverbose>=1!0.0.1784686617", "unmp>=1!0.0.1785929992"]
+dependencies-indexed = ["vispy", "polyscope", "asserttool>=1!0.0.1785542140", "click-auto-help>=1!0.0.1784680961", "clicktool>=1!0.0.1785930957", "configtool>=1!0.0.1785931169", "globalverbose>=1!0.0.1784686617", "unmp>=1!0.0.1785929992"]
 dependencies-git = [
 	"vispy",
 	"polyscope",

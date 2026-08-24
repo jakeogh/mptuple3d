@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mptuple3d"
-version = "1!0.0.1787555726"
+version = "1!0.0.1787556740"
 description = "plots 3-tuples in 3D space"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -15,7 +15,7 @@ dependencies = [
     "asserttool @ git+https://github.com/jakeogh/asserttool@4bd23a06c2161e488415acde89c29537e6720cc1",
     "click-auto-help @ git+https://github.com/jakeogh/click-auto-help@c53f57c78529a51ae9b03f579d7ee6f2d63ca03a",
     "clicktool @ git+https://github.com/jakeogh/clicktool@7294ba6934225c028e48638fc0540bc57238ff00",
-    "configtool @ git+https://github.com/jakeogh/configtool@8a4ea7e2740ceb52b8b93684fe803c2461c9f0ed",
+    "configtool @ git+https://github.com/jakeogh/configtool@75b3119da7a070d1ddfe13402a6fa7f7224e7ae3",
 ]
 requires-python = ">=3.11"
 license = "ISC"

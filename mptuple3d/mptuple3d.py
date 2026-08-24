@@ -26,8 +26,6 @@ from vispy.scene.cameras import TurntableCamera  # type: ignore
 
 # Import utility functions - these replace the duplicated functions that were in this file
 from .utils import center_points
-from .utils import load_points_from_stdin_for_2d
-from .utils import load_points_from_stdin_for_3d
 from .utils import normalize_points
 
 use_app("pyqt6")
